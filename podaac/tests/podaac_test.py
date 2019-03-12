@@ -178,15 +178,15 @@ class TestPodaac(unittest.TestCase):
 
     # test case for the function extract_l4_granule()
     def test_extract_l4_granule(self):
+        assert_raises(Exception, self.podaac.extract_l4_granule,
+                      dataset_id='ABCDEF')
+
         dataset_id = 'PODAAC-GHCMC-4FM02'
         path = os.path.dirname(os.path.abspath(__file__))
         granule_name = self.podaac.extract_l4_granule(
             dataset_id, path)
 
         assert granule_name != None
-        assert_raises(Exception, self.podaac.extract_l4_granule,
-                      dataset_id='ABCDEF')
-
         path = os.path.join(os.path.dirname(__file__), granule_name)
         os.remove(path)
 
